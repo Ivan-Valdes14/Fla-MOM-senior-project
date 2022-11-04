@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FLAMOM_SeniorProject.Data.VisitInformation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MouthPain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LengthOfPain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverallHealth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeToTravel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AttendBefore)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MouthPain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LengthOfPain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OverallHealth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeToTravel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendBefore)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

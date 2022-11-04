@@ -1,0 +1,62 @@
+﻿@model FLAMOM_SeniorProject.ViewModel.VisitInformationVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>VisitInformation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label  class="control-label">1. What is the reason for your visit today?</label>
+                    @Html.CheckBoxFor(model => model.Cleaning) Cleaning
+                     @Html.CheckBoxFor(model => model.Filling) Filling
+                      @Html.CheckBoxFor(model => model.Extraction) Extraction
+            </div>
+            
+            <div class="form-group">
+                <label  class="control-label">2. Are you having pain anywhere in your mouth today?</label>
+                    <div>@Html.RadioButtonFor(model => model.MouthPain, "true") Yes</div>
+                     <div>@Html.RadioButtonFor(model => model.MouthPain, "false") No</div>
+                        <span asp-validation-for = "MouthPain" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label  class="control-label">3. How long have you had this pain?</label>
+                    <div>@Html.RadioButtonFor(model => model.LengthOfPain, "1 month or less") 1 month or less</div>
+                     <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 month, but not more than 1 year") More than 1 month, but not more than 1 year</div>
+                       <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 6 months, but not more than 1 year") More than 6 months, but not more than 1 year</div>
+                        <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 year") More than 1 year</div>
+                        <span asp-validation-for = "LengthOfPain" class="text-danger"></span>
+                    </div>
+
+             <div class="form-group">
+                <label  class="control-label">3. How long have you had this pain?</label>
+                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Excellent") Excellent</div>
+                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Very good") Very good </div>
+                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Good") Good</div>
+                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Fair") Fair</div>
+                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Poor") Poor</div>
+                     <span asp-validation-for = "OverallHealth" class="text-danger"></span>
+             </div> 
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

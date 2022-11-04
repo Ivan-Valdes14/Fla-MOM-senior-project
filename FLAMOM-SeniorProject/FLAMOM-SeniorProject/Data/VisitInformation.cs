@@ -12,6 +12,9 @@
         public string TimeToTravel { get; set; }
 
         public string AttendBefore { get; set; }
+        /// <summary>
+        /// we use public virtual List<> because of the one to many relationship, both of these tables are the same for this reason
+        /// </summary>
         public virtual List<ReasonForVisit> ReasonsForVisit { get; set; }
         public virtual List<HeardAbout> HeardAbouts { get; set; }
 

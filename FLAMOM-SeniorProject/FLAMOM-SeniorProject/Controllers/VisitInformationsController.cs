@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FLAMOM_SeniorProject.Data;
 using FLAMOM_SeniorProject.ViewModel;
+using AutoMapper;
 
 namespace FLAMOM_SeniorProject.Controllers
 {
     public class VisitInformationsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public VisitInformationsController(ApplicationDbContext context)
+        public VisitInformationsController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: VisitInformations
@@ -62,11 +65,17 @@ namespace FLAMOM_SeniorProject.Controllers
                 //except the final page where we will submit all of the data together
                 //_context.Add(visitInformationVm);
                 //await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(DentalHealth),visitInformation);
             }
             return View(visitInformation);
         }
-
+        public IActionResult DentalHealth(VisitInformationVM visitInformation)
+        {
+            DentalHealthVM dentalHealthVM = _mapper.Map<DentalHealthVM>(visitInformation);
+            
+            
+            return View(dentalHealthVM);
+        }
         // GET: VisitInformations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

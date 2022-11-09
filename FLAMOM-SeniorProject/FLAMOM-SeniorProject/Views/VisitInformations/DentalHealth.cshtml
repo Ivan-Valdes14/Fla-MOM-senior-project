@@ -1,7 +1,7 @@
-﻿@model FLAMOM_SeniorProject.ViewModel.VisitInformationVM
+﻿@model FLAMOM_SeniorProject.ViewModel.DentalHealthVM
 
 @{
-    ViewData["Title"] = "Visit Information";
+    ViewData["Title"] = "Dental Health";
 }
 <script>
 function submitWith(){   
@@ -45,13 +45,14 @@ function validateReasonForVisit() {
 
 }
 </script>
-<h4>Visit Information</h4>
+
+<h4>Dental Health</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="DentalHealth">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+            @Html.HiddenFor(model => model.MouthPain)
             <div class="form-group">
                 <label  class="control-label">1. What is the reason for your visit today?</label>
                     <div>@Html.CheckBoxFor(model => model.Cleaning) Cleaning</div>

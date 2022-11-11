@@ -4,7 +4,7 @@
     {
         public bool MouthPain { get; set; }
 
-        public string LengthOfPain { get; set; }
+        public string? LengthOfPain { get; set; }
 
         public string OverallHealth { get; set; }
 
@@ -28,6 +28,8 @@
         public bool Religious { get; set; }
         public bool Work { get; set; }
         public bool Other { get; set; }
+
+        public string? OtherAnswer { get; set; }
 
     }
 }

@@ -3,47 +3,149 @@
 @{
     ViewData["Title"] = "Visit Information";
 }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+          //set initial state.
+            $('#OtherAnswer').hide();
+          $('#Cleaning').change(function() {
+              validateReasonForVisit();
+          });
+          $('#Filling').change(function() {
+              validateReasonForVisit();
+          });
+          $('#Extraction').change(function() {
+              validateReasonForVisit();
+          });
+         
+          
+          
+          $('#FamilyMemberFriend').change(function() {
+              validateHeardAbout();
+          });
+          $('#Television').change(function() {
+              validateHeardAbout();
+          });
+          $('#Radio').change(function() {
+              validateHeardAbout();
+          });
+          $('#Newspaper').change(function() {
+              validateHeardAbout();
+          });
+          $('#Internet').change(function() {
+              validateHeardAbout();
+          });
+          $('#DoctorOffice').change(function() {
+              validateHeardAbout();
+          });
+          $('#CenterClinic').change(function() {
+              validateHeardAbout();
+          });
+          $('#Hospital').change(function() {
+              validateHeardAbout();
+          });
+          $('#Religious').change(function() {
+              validateHeardAbout();
+          });
+          $('#Work').change(function() {
+              validateHeardAbout();
+          });
+          $('#Other').change(function() {
+              validateHeardAbout();
+          });
+
+          $('#Other').change(function() {
+              if (this.checked == true) {
+                  $('#OtherAnswer').show();
+              }
+              else{
+                  $('#OtherAnswer').hide();
+              }
+          });
+
+          
+          $('input[name = MouthPain]').change(function() {
+              if (this.value == 'true') {
+                  $('#question3').show();
+              }
+              else {
+                  $('#question3').hide();
+              }
+          });
+         
+        });
+    </script>
+}
 <script>
+
 function submitWith(){   
      var vrfv = validateReasonForVisit();
     var hab = validateHeardAbout();
-
-    var valid = vrfv || hab;
+    var lop = validateLengthOfPain();
+    var valid = vrfv && hab && lop;
 
     return valid;
 }
+function validateLengthOfPain() {
+    var hasPain = $('input[name = MouthPain]:checked').val();
+    alert(hasPain);
+    if (hasPain == true) {
+        var lengthOfPain = $('input[name = LengthOfPain]:checked').val();
+        alert(lengthOfPain)
+        if (lengthOfPain == undefined) {
+            $('#validationMessageLengthOfPain').html('The LengthOfPain field is required.');
+            return false;
+        }
+        else{
+            $('#validationMessageLengthOfPain').html('');
+            return true;
+        }
+    }
+    else{
+        return true;
+    }
+    
+}
 function validateHeardAbout() {
-    var FamilyMemberFriend = $('#FamilyMemberFriend').checked
-    var Television = $('#Television').checked
-    var Radio = $('#Radio').checked
-    var Newspaper = $('#Newspaper').checked
-    var Internet = $('#Internet').checked
-    var DoctorOffice = $('#DoctorOffice').checked
-    var CenterClinic = $('#CenterClinic').checked
-    var Hospital = $('#Hospital').checked
-    var Religious = $('#Religious').checked
-    var Work = $('#Work').checked
-    var Other = $('#Other').checked
+    var FamilyMemberFriend = $('#FamilyMemberFriend')[0].checked
+    var Television = $('#Television')[0].checked
+    var Radio = $('#Radio')[0].checked
+    var Newspaper = $('#Newspaper')[0].checked
+    var Internet = $('#Internet')[0].checked
+    var DoctorOffice = $('#DoctorOffice')[0].checked
+    var CenterClinic = $('#CenterClinic')[0].checked
+    var Hospital = $('#Hospital')[0].checked
+    var Religious = $('#Religious')[0].checked
+    var Work = $('#Work')[0].checked
+    var Other = $('#Other')[0].checked
 
      var valid = FamilyMemberFriend || Television || Radio || Newspaper || Internet || DoctorOffice || CenterClinic|| Hospital || Religious || Work || Other;
 
      if(!valid){
-         $('#validationMessageReasonForVisit').html('The HeardAbout field is required.');
+         $('#validationMessageHeardAbout').html('The HeardAbout field is required.');
+    }
+     else{
+         $('#validationMessageHeardAbout').html('');
     }
     return valid ;   
 }
 function validateReasonForVisit() {
-    var cleaningChecked = $('#Cleaning').checked;
-    var fillingChecked = $('#Filling').checked;
-    var extractionChecked = $('#Extraction').checked;
+    var cleaningChecked = $('#Cleaning')[0].checked;
+    var fillingChecked = $('#Filling')[0].checked;
+    var extractionChecked = $('#Extraction')[0].checked;
     var valid = cleaningChecked || fillingChecked || extractionChecked;
 
     if(!valid){
-         $('#validationMessageHeardAbout').html('The ReasonForVisit field is required.');
+         $('#validationMessageReasonForVisit').html('The ReasonForVisit field is required.');
+    }
+    else{
+         $('#validationMessageReasonForVisit').html('');
     }
     return valid ;   
 
 }
+
 </script>
 <h4>Visit Information</h4>
 <hr />
@@ -67,13 +169,13 @@ function validateReasonForVisit() {
                         <span asp-validation-for = "MouthPain" class="text-danger"></span>
             </div>
             <br />
-            <div class="form-group">
+            <div class="form-group" id="question3">
                 <label  class="control-label">3. How long have you had this pain?</label>
                     <div>@Html.RadioButtonFor(model => model.LengthOfPain, "1 month or less") 1 month or less</div>
                      <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 month, but not more than 1 year") More than 1 month, but not more than 1 year</div>
                        <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 6 months, but not more than 1 year") More than 6 months, but not more than 1 year</div>
                         <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 year") More than 1 year</div>
-                        <span asp-validation-for = "LengthOfPain" class="text-danger"></span>
+                         <span id="validationMessageLengthOfPain" class="text-danger" />
                     </div>
                     <br />
              <div class="form-group">
@@ -108,7 +210,8 @@ function validateReasonForVisit() {
                     <div>@Html.CheckBoxFor(model => model.Hospital) Hospital</div>
                      <div> @Html.CheckBoxFor(model => model.Religious) Church or other religious organization</div>
                      <div>@Html.CheckBoxFor(model => model.Work) At work</div>
-                    <div>@Html.CheckBoxFor(model => model.Other) Other (describe: )</div>
+                    <div>@Html.CheckBoxFor(model => model.Other) Other Describe: @Html.TextBoxFor(model => model.OtherAnswer)</div>
+
                     <span id="validationMessageHeardAbout" class="text-danger" />
                      
             </div>
@@ -129,6 +232,4 @@ function validateReasonForVisit() {
 </div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+

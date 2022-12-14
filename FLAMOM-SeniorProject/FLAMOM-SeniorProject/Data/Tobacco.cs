@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace FLAMOM_SeniorProject.Data
+﻿namespace FLAMOM_SeniorProject.Data
 {
-    public class ReasonForVisit
+    public class Tobacco
     {
         public int Id { get; set; }
-        
+
         public int PatientId { get; set; }
-        public string Reason { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// This public virtual VisitInformation VisitInfo { get; set; } indicates there is a forgein key relation 
         /// declaring with a type of VisitInformation means its going to be a forgien key from that table and naming it VisitInfo implies that it will

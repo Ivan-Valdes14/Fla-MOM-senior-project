@@ -1,0 +1,150 @@
+﻿@model FLAMOM_SeniorProject.ViewModel.YourHouseholdVM
+
+@{
+    ViewData["Title"] = "Your HouseHold";
+}
+
+<h4>Your HouseHold</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form asp-action="YourHousehold">
+            @Html.HiddenFor(model => model.MouthPain)
+            @Html.HiddenFor(model => model.LengthOfPain)
+            @Html.HiddenFor(model => model.OverallHealth)
+            @Html.HiddenFor(model => model.TimeToTravel)
+            @Html.HiddenFor(model => model.AttendBefore)
+            @Html.HiddenFor(model => model.Cleaning)
+            @Html.HiddenFor(model => model.Filling)
+            @Html.HiddenFor(model => model.Extraction)
+            @Html.HiddenFor(model => model.FamilyMemberFriend)
+            @Html.HiddenFor(model => model.Television)
+            @Html.HiddenFor(model => model.Radio)
+            @Html.HiddenFor(model => model.Newspaper)
+            @Html.HiddenFor(model => model.Internet)
+            @Html.HiddenFor(model => model.DoctorOffice)
+            @Html.HiddenFor(model => model.CenterClinic)
+            @Html.HiddenFor(model => model.Hospital)
+            @Html.HiddenFor(model => model.Religious)
+            @Html.HiddenFor(model => model.Work)
+            @Html.HiddenFor(model => model.Other)
+            @Html.HiddenFor(model => model.OtherAnswer)
+            @Html.HiddenFor(model => model.TeethGums)
+            @Html.HiddenFor(model => model.MainRsn)
+            @Html.HiddenFor(model => model.NoReason)
+            @Html.HiddenFor(model => model.DentalEmer)
+            @Html.HiddenFor(model => model.CantAfford)
+            @Html.HiddenFor(model => model.DontWantToSpend)
+            @Html.HiddenFor(model => model.NoDental)
+            @Html.HiddenFor(model => model.NoApp)
+            @Html.HiddenFor(model => model.NoTimeOff)
+            @Html.HiddenFor(model => model.TooFar)
+            @Html.HiddenFor(model => model.NotOpen)
+            @Html.HiddenFor(model => model.TooBusy)
+            @Html.HiddenFor(model => model.NoTransport)
+            @Html.HiddenFor(model => model.DontKnow)
+            @Html.HiddenFor(model => model.ToldToCome)
+            @Html.HiddenFor(model => model.Other2)
+            @Html.HiddenFor(model => model.OtherAnswer2)
+            @Html.HiddenFor(model => model.LastVisit)
+            @Html.HiddenFor(model => model.MainRsnLstVst)
+            @Html.HiddenFor(model => model.UsualCare)
+            @Html.HiddenFor(model => model.Emrgncy)
+            @Html.HiddenFor(model => model.LastSixMnths)
+            @Html.HiddenFor(model => model.GoToOffice)
+            @Html.HiddenFor(model => model.DentistOffice)
+            @Html.HiddenFor(model => model.TallMemHos)
+            @Html.HiddenFor(model => model.CapRegMedCenter)
+            @Html.HiddenFor(model => model.BondComHealth)
+            @Html.HiddenFor(model => model.CarePoint)
+            @Html.HiddenFor(model => model.KearneyCenter)
+            @Html.HiddenFor(model => model.LeonCounty)
+            @Html.HiddenFor(model => model.NeighborhoodMedCenter)
+            @Html.HiddenFor(model => model.TallComDental)
+            @Html.HiddenFor(model => model.NoLocations)
+            @Html.HiddenFor(model => model.UsualJobs)
+            @Html.HiddenFor(model => model.Insurance)
+            @Html.HiddenFor(model => model.Cigarettes)
+            @Html.HiddenFor(model => model.Pipes)
+            @Html.HiddenFor(model => model.Cigars)
+            @Html.HiddenFor(model => model.Hookahs)
+            @Html.HiddenFor(model => model.Ecigarettes)
+            @Html.HiddenFor(model => model.ChewingTobacco)
+            @Html.HiddenFor(model => model.Snuff)
+            @Html.HiddenFor(model => model.Snus)
+            @Html.HiddenFor(model => model.Dissolvables)
+            @Html.HiddenFor(model => model.NoSmoking)
+            @Html.HiddenFor(model => model.LevelOfSchool)
+            @Html.HiddenFor(model => model.InsFromEmp)
+            @Html.HiddenFor(model => model.InsFromComp)
+            @Html.HiddenFor(model => model.Medicare)
+            @Html.HiddenFor(model => model.Medicade)
+            @Html.HiddenFor(model => model.InsFromHcGov)
+            @Html.HiddenFor(model => model.Military)
+            @Html.HiddenFor(model => model.AnotherKind)
+            @Html.HiddenFor(model => model.NoIns)
+            @Html.HiddenFor(model => model.ServedInMil)
+            @Html.HiddenFor(model => model.Hispanic)
+            @Html.HiddenFor(model => model.White)
+            @Html.HiddenFor(model => model.Black)
+            @Html.HiddenFor(model => model.Asian)
+            @Html.HiddenFor(model => model.PacificIslander)
+            @Html.HiddenFor(model => model.AmericanIndian)
+            @Html.HiddenFor(model => model.Other3)
+            @Html.HiddenFor(model => model.JobSituation)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               <div class="col">
+                <div class="form-group">
+                    <label  class="control-label">27. Including yourself, how many people are living or staying at your home address for more than 2 months?</label>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "1 person (just myself)") 1 person (just myself)</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "2 people") 2 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "3 people") 3 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "4 people") 4 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "5 people") 5 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "6 people") 6 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "7 people") 7 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "8 people") 8 people</div>
+                         <div>@Html.RadioButtonFor(model => model.PeopleAtHome, "9 or more people") 9 or more people</div>
+                         <span asp-validation-for = "PeopleAtHome" class="text-danger"></span>
+                </div>
+                <br />
+                 <div class="form-group">
+                    <label  class="control-label">28. In the past 12 months, did you or any member of your household receive benefits from the Food Stamp Program or SNAP (the Supplemental Nutrition Assistance Program)?</label>
+                         <div>@Html.RadioButtonFor(model => model.FoodStamp, "Yes") Yes</div>
+                         <div>@Html.RadioButtonFor(model => model.FoodStamp, "No") No</div>
+                         <span asp-validation-for = "FoodStamp" class="text-danger"></span>
+                </div>
+                <br />
+                 <div class="form-group">
+                    <label  class="control-label">29. In the past 12 months, did you or any member of your household receive benefits from the WIC program (the Women, Infants, and Children program)?</label>
+                         <div>@Html.RadioButtonFor(model => model.WicProg, "Yes") Yes</div>
+                         <div>@Html.RadioButtonFor(model => model.WicProg, "No") No</div>
+                         <span asp-validation-for = "WicProg" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="col">
+                 <div class="form-group">
+                    <label  class="control-label">30. What is your best estimate of the total yearly income of all members in your household from all sources before taxes? (This includes money from jobs, net income from business, unemployment compensation, workers’ compensation, Social Security payments, Supplemental Security Income, retirement benefits, veterans’ payments, alimony, child support, dividends, interest, and any other money received.)</label>
+                        <div>@Html.RadioButtonFor(model => model.HouseIncome, "Less than $10,000")Less than $10,000 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$10,000 to $14,999")$10,000 to $14,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$15,000 to $19,999")$15,000 to $19,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$20,000 to $24,999")$20,000 to $24,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$25,000 to $29,999")$25,000 to $29,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$30,000 to $34,999")$30,000 to $34,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$35,000 to $39,999")$35,000 to $39,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$40,000 to $49,999")$40,000 to $49,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$50,000 to $59,999")$50,000 to $59,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$60,000 to $69,999")$60,000 to $69,999 </div>
+                         <div>@Html.RadioButtonFor(model => model.HouseIncome, "$70,000 or more")$70,000 or more </div>
+                        
+                         <span asp-validation-for = "HouseIncome" class="text-danger"></span>
+                     
+                </div>
+                <br />
+                <div class="form-group">
+                    <input onclick="return submitWith();" type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+             </div>
+        </form>
+    </div>
+</div>

@@ -8,6 +8,8 @@ namespace FLAMOM_SeniorProject.Profiles
         public AutoMapperProfile()
         {
             CreateMap<VisitInformationVM, DentalHealthVM>();
+            CreateMap<DentalHealthVM, AboutYouVM>();
+            CreateMap<AboutYouVM, YourHouseholdVM>();
         }
        
     }

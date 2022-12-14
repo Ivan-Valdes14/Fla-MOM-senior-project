@@ -1,0 +1,260 @@
+﻿
+@model FLAMOM_SeniorProject.ViewModel.AboutYouVM
+
+@{
+    ViewData["Title"] = "About You";
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+          //set initial state.
+           $('#InsFromEmp').change(function() {
+              validateInsReasons();
+            });
+            $('#InsFromComp').change(function() {
+              validateInsReasons();
+            });
+             $('#Medicare').change(function() {
+              validateInsReasons();
+            });
+             $('#Medicade').change(function() {
+              validateInsReasons();
+            });
+             $('#InsFromHcGov').change(function() {
+              validateInsReasons();
+            });
+             $('#Military').change(function() {
+              validateInsReasons();
+            });
+             $('#AnotherKind').change(function() {
+              validateInsReasons();
+            });
+             $('#NoIns').change(function() {
+              validateInsReasons();
+            });
+
+            $('#White').change(function() {
+              validateRace();
+            });
+            $('#Black').change(function() {
+              validateRace();
+            });
+            $('#Asian').change(function() {
+              validateRace();
+            });
+            $('#PacificIslander').change(function() {
+              validateRace();
+            });
+            $('#AmericanIndian').change(function() {
+              validateRace();
+            });
+            $('#Other3').change(function() {
+              validateRace();
+            });
+         
+        });
+    </script>
+}
+<script>
+    
+function submitWith(){   
+    var vIn = validateInsReasons();
+    var vrace = validateRace();
+    var valid = vIn && vrace;
+
+    return valid;
+}
+function validateInsReasons() {
+    var InsFromEmp = $('#InsFromEmp')[0].checked
+    var InsFromComp = $('#InsFromComp')[0].checked
+    var Medicare = $('#Medicare')[0].checked
+    var Medicade = $('#Medicade')[0].checked
+    var InsFromHcGov = $('#InsFromHcGov')[0].checked
+    var Military = $('#Military')[0].checked
+    var AnotherKind = $('#AnotherKind')[0].checked
+    var NoIns = $('#NoIns')[0].checked
+   
+
+     var valid = InsFromEmp || InsFromComp || Medicare || Medicade || InsFromHcGov || Military || AnotherKind || NoIns;
+
+     if(!valid){
+         $('#validationMessageInsur').html('The HealthInsurance field is required.');
+    }
+     else{
+         $('#validationMessageInsur').html('');
+    }
+    return valid ;   
+}
+function validateRace() {
+    var White = $('#White')[0].checked
+    var Black = $('#Black')[0].checked
+    var Asian = $('#Asian')[0].checked
+    var PacificIslander = $('#PacificIslander')[0].checked
+    var AmericanIndian = $('#AmericanIndian')[0].checked
+    var Other3 = $('#Other3')[0].checked
+ 
+   
+
+     var valid = White || Black || Asian || PacificIslander || AmericanIndian || Other3;
+
+     if(!valid){
+         $('#validationMessageRace').html('The OtherReasons field is required.');
+    }
+     else{
+         $('#validationMessageRace').html('');
+    }
+    return valid ;   
+}
+            
+</script>
+<h4>About You</h4>
+<hr />
+<div class="row">
+    <div class="container">
+        <form asp-action="AboutYou">
+            @Html.HiddenFor(model => model.MouthPain)
+            @Html.HiddenFor(model => model.LengthOfPain)
+            @Html.HiddenFor(model => model.OverallHealth)
+            @Html.HiddenFor(model => model.TimeToTravel)
+            @Html.HiddenFor(model => model.AttendBefore)
+            @Html.HiddenFor(model => model.Cleaning)
+            @Html.HiddenFor(model => model.Filling)
+            @Html.HiddenFor(model => model.Extraction)
+            @Html.HiddenFor(model => model.FamilyMemberFriend)
+            @Html.HiddenFor(model => model.Television)
+            @Html.HiddenFor(model => model.Radio)
+            @Html.HiddenFor(model => model.Newspaper)
+            @Html.HiddenFor(model => model.Internet)
+            @Html.HiddenFor(model => model.DoctorOffice)
+            @Html.HiddenFor(model => model.CenterClinic)
+            @Html.HiddenFor(model => model.Hospital)
+            @Html.HiddenFor(model => model.Religious)
+            @Html.HiddenFor(model => model.Work)
+            @Html.HiddenFor(model => model.Other)
+            @Html.HiddenFor(model => model.OtherAnswer)
+            @Html.HiddenFor(model => model.TeethGums)
+            @Html.HiddenFor(model => model.MainRsn)
+            @Html.HiddenFor(model => model.NoReason)
+            @Html.HiddenFor(model => model.DentalEmer)
+            @Html.HiddenFor(model => model.CantAfford)
+            @Html.HiddenFor(model => model.DontWantToSpend)
+            @Html.HiddenFor(model => model.NoDental)
+            @Html.HiddenFor(model => model.NoApp)
+            @Html.HiddenFor(model => model.NoTimeOff)
+            @Html.HiddenFor(model => model.TooFar)
+            @Html.HiddenFor(model => model.NotOpen)
+            @Html.HiddenFor(model => model.TooBusy)
+            @Html.HiddenFor(model => model.NoTransport)
+            @Html.HiddenFor(model => model.DontKnow)
+            @Html.HiddenFor(model => model.ToldToCome)
+            @Html.HiddenFor(model => model.Other2)
+            @Html.HiddenFor(model => model.OtherAnswer2)
+            @Html.HiddenFor(model => model.LastVisit)
+            @Html.HiddenFor(model => model.MainRsnLstVst)
+            @Html.HiddenFor(model => model.UsualCare)
+            @Html.HiddenFor(model => model.Emrgncy)
+            @Html.HiddenFor(model => model.LastSixMnths)
+            @Html.HiddenFor(model => model.GoToOffice)
+            @Html.HiddenFor(model => model.DentistOffice)
+            @Html.HiddenFor(model => model.TallMemHos)
+            @Html.HiddenFor(model => model.CapRegMedCenter)
+            @Html.HiddenFor(model => model.BondComHealth)
+            @Html.HiddenFor(model => model.CarePoint)
+            @Html.HiddenFor(model => model.KearneyCenter)
+            @Html.HiddenFor(model => model.LeonCounty)
+            @Html.HiddenFor(model => model.NeighborhoodMedCenter)
+            @Html.HiddenFor(model => model.TallComDental)
+            @Html.HiddenFor(model => model.NoLocations)
+            @Html.HiddenFor(model => model.UsualJobs)
+            @Html.HiddenFor(model => model.Insurance)
+            @Html.HiddenFor(model => model.Cigarettes)
+            @Html.HiddenFor(model => model.Pipes)
+            @Html.HiddenFor(model => model.Cigars)
+            @Html.HiddenFor(model => model.Hookahs)
+            @Html.HiddenFor(model => model.Ecigarettes)
+            @Html.HiddenFor(model => model.ChewingTobacco)
+            @Html.HiddenFor(model => model.Snuff)
+            @Html.HiddenFor(model => model.Snus)
+            @Html.HiddenFor(model => model.Dissolvables)
+            @Html.HiddenFor(model => model.NoSmoking)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               <div class="col">
+                <div class="form-group">
+                    <label  class="control-label">21. What is the highest grade or level of school that you have completed?</label>
+                       <div>@Html.RadioButtonFor(model => model.LevelOfSchool, "8th grade or less") 8th grade or less</div>
+                         <div>@Html.RadioButtonFor(model => model.LevelOfSchool, "Some high school, but did not graduate") Some high school, but did not graduate</div>
+                         <div>@Html.RadioButtonFor(model => model.LevelOfSchool, "High school graduate or GED") High school graduate or GED</div>
+                         <div>@Html.RadioButtonFor(model => model.LevelOfSchool, "Some college or 2-year degree") Some college or 2-year degree</div>
+                         <div>@Html.RadioButtonFor(model => model.LevelOfSchool, "4-year college graduate") 4-year college graduate</div>
+                          <div>@Html.RadioButtonFor(model => model.LevelOfSchool, "More than 4-year college degree") More than 4-year college degree</div>
+                     
+                         <span asp-validation-for = "LevelOfSchool" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">22. What kind of health insurance or health care coverage do you have? Mark all that apply.</label>
+                         <div>@Html.CheckBoxFor(model => model.InsFromEmp) Insurance from employer</div>
+                         <div>@Html.CheckBoxFor(model => model.InsFromComp) Insurance purchased directly from an insurance company</div>
+                         <div>@Html.CheckBoxFor(model => model.Medicare) Medicare, for people 65 and older or people with certain disabilities</div>
+                         <div>@Html.CheckBoxFor(model => model.Medicade) Medicaid, Medical Assistance, or government assistance for people with low incomes or a disability</div>
+                         <div>@Html.CheckBoxFor(model => model.InsFromHcGov) Insurance purchased through Healthcare.gov or Health Insurance Marketplace</div>
+                         <div>@Html.CheckBoxFor(model => model.Military) Military (TRICARE/VA/CHAMP-VA)</div>
+                         <div>@Html.CheckBoxFor(model => model.AnotherKind) Another type of health insurance or health coverage</div>
+                         <div>@Html.CheckBoxFor(model => model.NoIns) No health insurance or health coverage of any type (if selected, no other options should be selected)</div>
+                            <span id="validationMessageInsur" class="text-danger" />
+                            
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">23. Did you ever serve on active duty in the U.S. Armed Forces, Reserves or National Guard? Please mark ONE answer.</label>
+                        <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, now on active duty") Yes, now on active duty</div>
+                         <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, on active duty in the past, but not now") More than 6 months, but not more than 1 year ago → go to #12</div>
+                           <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, only on active duty for training in the Reserves or National Guard") More than 1 year, but not more than 2 years ago → go to #12</div>
+                            <div>@Html.RadioButtonFor(model => model.ServedInMil, "No, never served in the military") No, never served in the military</div>
+                             <span asp-validation-for = "ServedInMil" class="text-danger"></span>
+                        </div>
+               </div>
+                        <br />
+                <div class="col">
+                 <div class="form-group">
+                    <label  class="control-label">24. Are you of Hispanic or Latino or Spanish origin or descent?</label>
+                        <div>@Html.RadioButtonFor(model => model.Hispanic, "Yes") Yes</div>
+                        <div>@Html.RadioButtonFor(model => model.Hispanic, "No") No </div>
+                         <span asp-validation-for = "Hispanic" class="text-danger"></span>
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">25. What is your race? Please mark one or more.</label>
+                         <div>@Html.CheckBoxFor(model => model.White) White</div>
+                         <div>@Html.CheckBoxFor(model => model.Black) Black or African-American</div>
+                         <div>@Html.CheckBoxFor(model => model.Asian) Asian</div>
+                         <div>@Html.CheckBoxFor(model => model.PacificIslander) Native Hawaiian or other Pacific Islander</div>
+                         <div>@Html.CheckBoxFor(model => model.AmericanIndian) American Indian or Alaska Native</div>
+                         <div>@Html.CheckBoxFor(model => model.Other3) Other</div>
+                            <span id="validationMessageRace" class="text-danger" />
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">26. Which of the following best describes your current job or work situation? Please mark ONE answer.</label>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Employed for wages or salary") Employed for wages or salary</div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Self-employed") Self-employed </div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Out of work for less than 1 year and looking for work") Out of work for less than 1 year and looking for work</div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Out of work for 1 year or more and looking for work") Out of work for 1 year or more and looking for work </div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Taking care of house or family") Taking care of house or family</div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Going to school") Going to school </div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Retired") Retired</div>
+                        <div>@Html.RadioButtonFor(model => model.JobSituation, "Unable to work for health reasons or disability") Unable to work for health reasons or disability </div>
+                         <span asp-validation-for = "JobSituation" class="text-danger"></span>
+                     
+                </div>
+                <br />
+                <div class="form-group">
+                    <input onclick="return submitWith();" type="submit" value="Next" class="btn btn-primary" />
+                </div>
+             </div>
+        </form>
+    </div>
+</div>
+
+

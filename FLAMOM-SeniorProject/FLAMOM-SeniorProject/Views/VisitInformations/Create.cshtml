@@ -8,7 +8,8 @@
     <script>
         $(document).ready(function() {
           //set initial state.
-            $('#OtherAnswer').hide();
+          $('#OtherAnswer').hide();
+
           $('#Cleaning').change(function() {
               validateReasonForVisit();
           });
@@ -89,20 +90,23 @@ function submitWith(){
 }
 function validateLengthOfPain() {
     var hasPain = $('input[name = MouthPain]:checked').val();
-    alert(hasPain);
-    if (hasPain == true) {
+    //alert(typeof(hasPain));
+    if (hasPain == "true") {
         var lengthOfPain = $('input[name = LengthOfPain]:checked').val();
-        alert(lengthOfPain)
+        //alert("were here in outer if");
         if (lengthOfPain == undefined) {
+            //alert("were here in inner if");
             $('#validationMessageLengthOfPain').html('The LengthOfPain field is required.');
             return false;
         }
         else{
+            //alert("were here in inner else");
             $('#validationMessageLengthOfPain').html('');
             return true;
         }
     }
     else{
+        //alert("were here in outer else");
         return true;
     }
     
@@ -149,87 +153,92 @@ function validateReasonForVisit() {
 </script>
 <h4>Visit Information</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label  class="control-label">1. What is the reason for your visit today?</label>
-                    <div>@Html.CheckBoxFor(model => model.Cleaning) Cleaning</div>
-                    <div>@Html.CheckBoxFor(model => model.Filling) Filling</div>
-                     <div> @Html.CheckBoxFor(model => model.Extraction) Extraction</div>
-                     <span id="validationMessageReasonForVisit" class="text-danger" />
-            </div>
-            <br />
-            <div class="form-group">
-                <label  class="control-label">2. Are you having pain anywhere in your mouth today?</label>
-                    <div>@Html.RadioButtonFor(model => model.MouthPain, "true") Yes→ go to #3</div>
-                     <div>@Html.RadioButtonFor(model => model.MouthPain, "false") No→ SKIP to #4</div>
-                        <span asp-validation-for = "MouthPain" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group" id="question3">
-                <label  class="control-label">3. How long have you had this pain?</label>
-                    <div>@Html.RadioButtonFor(model => model.LengthOfPain, "1 month or less") 1 month or less</div>
-                     <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 month, but not more than 1 year") More than 1 month, but not more than 1 year</div>
-                       <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 6 months, but not more than 1 year") More than 6 months, but not more than 1 year</div>
-                        <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 year") More than 1 year</div>
-                         <span id="validationMessageLengthOfPain" class="text-danger" />
-                    </div>
-                    <br />
-             <div class="form-group">
-                <label  class="control-label">4. In general, how would you rate your overall health?</label>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Excellent") Excellent</div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Very good") Very good </div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Good") Good</div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Fair") Fair</div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Poor") Poor</div>
-                     <span asp-validation-for = "OverallHealth" class="text-danger"></span>
-             </div> 
-             <br />
-             <div class="form-group">
-                <label  class="control-label">5. How much time did it take you to travel here today?</label>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "0-15 minutes") 0-15 minutes</div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "16-30 minutes") 16-30 minutes </div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "31-60 minutes") 31-60 minutes</div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "More than 1 hour, but not more than 2 hours") More than 1 hour, but not more than 2 hours</div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "More than 1 hour, but not more than 2 hours") More than 1 hour, but not more than 2 hours</div>
-                     <span asp-validation-for = "TimeToTravel" class="text-danger"></span>
-             </div> 
-             <br />
-             <div class="form-group">
-                <label  class="control-label">6. How did you hear about the Florida Mission of Mercy clinic? Mark all that apply.</label>
-                    <div>@Html.CheckBoxFor(model => model.FamilyMemberFriend) Family member or friend</div>
-                    <div>@Html.CheckBoxFor(model => model.Television) Television</div>
-                     <div> @Html.CheckBoxFor(model => model.Radio) Radio</div>
-                     <div>@Html.CheckBoxFor(model => model.Newspaper) Newspaper</div>
-                    <div>@Html.CheckBoxFor(model => model.Internet) Internet – Facebook, Twitter, Blog, or other website</div>
-                     <div> @Html.CheckBoxFor(model => model.DoctorOffice) Doctor’s office</div>
-                     <div>@Html.CheckBoxFor(model => model.CenterClinic) Health center/clinic</div>
-                    <div>@Html.CheckBoxFor(model => model.Hospital) Hospital</div>
-                     <div> @Html.CheckBoxFor(model => model.Religious) Church or other religious organization</div>
-                     <div>@Html.CheckBoxFor(model => model.Work) At work</div>
-                    <div>@Html.CheckBoxFor(model => model.Other) Other Describe: @Html.TextBoxFor(model => model.OtherAnswer)</div>
 
-                    <span id="validationMessageHeardAbout" class="text-danger" />
+        <div class="container">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col">
+                <div class="form-group">
+                    <label  class="control-label">1. What is the reason for your visit today?</label>
+                        <div>@Html.CheckBoxFor(model => model.Cleaning) Cleaning</div>
+                        <div>@Html.CheckBoxFor(model => model.Filling) Filling</div>
+                         <div> @Html.CheckBoxFor(model => model.Extraction) Extraction</div>
+                         <span id="validationMessageReasonForVisit" class="text-danger" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">2. Are you having pain anywhere in your mouth today?</label>
+                        <div>@Html.RadioButtonFor(model => model.MouthPain, "true") Yes→ go to #3</div>
+                         <div>@Html.RadioButtonFor(model => model.MouthPain, "false") No→ SKIP to #4</div>
+                            <span asp-validation-for = "MouthPain" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group" id="question3">
+                    <label  class="control-label">3. How long have you had this pain?</label>
+                        <div>@Html.RadioButtonFor(model => model.LengthOfPain, "1 month or less") 1 month or less</div>
+                         <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 month, but not more than 1 year") More than 1 month, but not more than 1 year</div>
+                           <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 6 months, but not more than 1 year") More than 6 months, but not more than 1 year</div>
+                            <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 year") More than 1 year</div>
+                             <span id="validationMessageLengthOfPain" class="text-danger" />
+                        </div>
+                    </div>
+                        <br />
+                <div class="col">
+                 <div class="form-group">
+                    <label  class="control-label">4. In general, how would you rate your overall health?</label>
+                        <div>@Html.RadioButtonFor(model => model.OverallHealth, "Excellent") Excellent</div>
+                        <div>@Html.RadioButtonFor(model => model.OverallHealth, "Very good") Very good </div>
+                        <div>@Html.RadioButtonFor(model => model.OverallHealth, "Good") Good</div>
+                        <div>@Html.RadioButtonFor(model => model.OverallHealth, "Fair") Fair</div>
+                        <div>@Html.RadioButtonFor(model => model.OverallHealth, "Poor") Poor</div>
+                         <span asp-validation-for = "OverallHealth" class="text-danger"></span>
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">5. How much time did it take you to travel here today?</label>
+                        <div>@Html.RadioButtonFor(model => model.TimeToTravel, "0-15 minutes") 0-15 minutes</div>
+                        <div>@Html.RadioButtonFor(model => model.TimeToTravel, "16-30 minutes") 16-30 minutes </div>
+                        <div>@Html.RadioButtonFor(model => model.TimeToTravel, "31-60 minutes") 31-60 minutes</div>
+                        <div>@Html.RadioButtonFor(model => model.TimeToTravel, "More than 1 hour, but not more than 2 hours") More than 1 hour, but not more than 2 hours</div>
+                        <div>@Html.RadioButtonFor(model => model.TimeToTravel, "More than 1 hour, but not more than 2 hours") More than 1 hour, but not more than 2 hours</div>
+                         <span asp-validation-for = "TimeToTravel" class="text-danger"></span>
+                 </div> 
+            </div>
+                 <br />
+               <div class="col">
+                 <div class="form-group">
+                    <label  class="control-label">6. How did you hear about the Florida Mission of Mercy clinic? Mark all that apply.</label>
+                        <div>@Html.CheckBoxFor(model => model.FamilyMemberFriend) Family member or friend</div>
+                        <div>@Html.CheckBoxFor(model => model.Television) Television</div>
+                         <div> @Html.CheckBoxFor(model => model.Radio) Radio</div>
+                         <div>@Html.CheckBoxFor(model => model.Newspaper) Newspaper</div>
+                        <div>@Html.CheckBoxFor(model => model.Internet) Internet – Facebook, Twitter, Blog, or other website</div>
+                         <div> @Html.CheckBoxFor(model => model.DoctorOffice) Doctor’s office</div>
+                         <div>@Html.CheckBoxFor(model => model.CenterClinic) Health center/clinic</div>
+                        <div>@Html.CheckBoxFor(model => model.Hospital) Hospital</div>
+                         <div> @Html.CheckBoxFor(model => model.Religious) Church or other religious organization</div>
+                         <div>@Html.CheckBoxFor(model => model.Work) At work</div>
+                        <div>@Html.CheckBoxFor(model => model.Other) Other Describe: @Html.TextBoxFor(model => model.OtherAnswer)</div>
+
+                        <span id="validationMessageHeardAbout" class="text-danger" />
                      
-            </div>
-            <br />
-            <div class="form-group">
-                <label  class="control-label">7. Did you attend the Florida Mission of Mercy clinic in Jacksonville in July 2021?</label>
-                    <div>@Html.RadioButtonFor(model => model.AttendBefore, "true") Yes</div>
-                    <div>@Html.RadioButtonFor(model => model.AttendBefore, "false") No </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">7. Did you attend the Florida Mission of Mercy clinic in Jacksonville in July 2021?</label>
+                        <div>@Html.RadioButtonFor(model => model.AttendBefore, "true") Yes</div>
+                        <div>@Html.RadioButtonFor(model => model.AttendBefore, "false") No </div>
                     
-                     <span asp-validation-for = "AttendBefore" class="text-danger"></span>
-             </div> 
-             <br />
-            <div class="form-group">
-                <input onclick="return submitWith();" type="submit" value="Next" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+                         <span asp-validation-for = "AttendBefore" class="text-danger"></span>
+                 </div> 
+                 <br />
+                <div class="form-group">
+                    <input onclick="return submitWith();" type="submit" value="Next" class="btn btn-primary" />
+                </div>
+                </div>
+            </form>
+        </div>
+    
 
 
 

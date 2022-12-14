@@ -30,8 +30,14 @@ namespace FLAMOM_SeniorProject.Data
         /// to update the db and actually add the tables must use command
         /// update-database
         /// </summary>
-        public DbSet<VisitInformation> VisitInformations { get; set; }
+        public DbSet<Patient> Patient { get; set; }
         public DbSet<ReasonForVisit> ReasonsForVisit { get; set; }
         public DbSet<HeardAbout> HeardAbouts { get; set; }
+
+        public  DbSet<OtherReasonsForVisit> OtherReasonsForVisit { get; set; }
+        public  DbSet<DentalOfficesVisited> DentalOfficesVisited { get; set; }
+        public DbSet<KindOfHealthcare> KindOfHealthcare { get; set; }
+        public DbSet<PatientRace> PatientRace { get; set; }
+        public DbSet<Tobacco> Tobacco { get; set; }
     }
 }

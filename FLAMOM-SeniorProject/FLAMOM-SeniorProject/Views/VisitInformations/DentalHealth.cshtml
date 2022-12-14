@@ -3,133 +3,479 @@
 @{
     ViewData["Title"] = "Dental Health";
 }
-<script>
-function submitWith(){   
-     var vrfv = validateReasonForVisit();
-    var hab = validateHeardAbout();
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+          //set initial state.
+            $('#OtherAnswer2').hide();
+         
+          $('#NoReason').change(function() {
+              validateOtherReasons();
+          });
+          $('#DentalEmer').change(function() {
+              validateOtherReasons();
+          });
+          $('#CantAfford').change(function() {
+              validateOtherReasons();
+          });
+          $('#DontWantToSpend').change(function() {
+              validateOtherReasons();
+          });
+          $('#NoDental').change(function() {
+              validateOtherReasons();
+          });
+          $('#NoApp').change(function() {
+              validateOtherReasons();
+          });
+          $('#NoTimeOff').change(function() {
+              validateOtherReasons();
+          });
+          $('#TooFar').change(function() {
+              validateOtherReasons();
+          });
+          $('#NotOpen').change(function() {
+              validateOtherReasons();
+          });
+          $('#TooBusy').change(function() {
+              validateOtherReasons();
+          });
+          $('#NoTransport').change(function() {
+              validateOtherReasons();
+          });
+          $('#DontKnow').change(function() {
+              validateOtherReasons();
+          });
+          $('#ToldToCome').change(function() {
+              validateOtherReasons();
+          });
+          $('#Other2').change(function() {
+              validateOtherReasons();
+          });
 
-    var valid = vrfv || hab;
+
+          $('#DentistOffice').change(function() {
+              dentalLocation();
+          });
+          $('#TallMemHos').change(function() {
+              dentalLocation();
+          });
+          $('#CapRegMedCenter').change(function() {
+              dentalLocation();
+          });
+          $('#BondComHealth').change(function() {
+              dentalLocation();
+          });
+          $('#CarePoint').change(function() {
+              dentalLocation();
+          });
+          $('#KearneyCenter').change(function() {
+              dentalLocation();
+          });
+          $('#LeonCounty').change(function() {
+              dentalLocation();
+          });
+          $('#NeighborhoodMedCenter').change(function() {
+              dentalLocation();
+          });
+          $('#TallComDental').change(function() {
+              dentalLocation();
+          });
+          $('#NoLocations').change(function() {
+              dentalLocation();
+          });
+
+
+          $('#Cigarettes').change(function() {
+              smoking();
+          });
+          $('#Pipes').change(function() {
+              smoking();
+          });
+          $('#Cigars').change(function() {
+              smoking();
+          });
+          $('#Hookahs').change(function() {
+              smoking();
+          });
+          $('#Ecigarettes').change(function() {
+              smoking();
+          });
+          $('#ChewingTobacco').change(function() {
+              smoking();
+          });
+          $('#Snuff').change(function() {
+              smoking();
+          });
+          $('#Snus').change(function() {
+              smoking();
+          });
+          $('#Dissolvables').change(function() {
+              smoking();
+          });
+          $('#NoSmoking').change(function() {
+              smoking();
+          });
+
+          $('input[name = Emrgncy]').change(function() {
+              if (this.value == 'Yes') {
+                  $('#question15').show();
+                   $('#question16').show();
+              }
+              else {
+                  $('#question15').hide();
+                   $('#question16').hide();
+              }
+          });
+
+          $('#Other2').change(function() {
+              if (this.checked == true) {
+                  $('#OtherAnswer2').show();
+              }
+              else{
+                  $('#OtherAnswer2').hide();
+              }
+          });
+
+          
+          
+         
+        });
+    </script>
+}
+<script>
+
+function submitWith(){   
+    var vor = validateOtherReasons();
+    var dl = dentalLocation();
+    var smoke = smoking();
+    var emrg = validateEmrgncy();
+    var emrg2 = validateEmrgncy2();
+    var valid = vor && dl && smoke && emrg && emrg2;
 
     return valid;
 }
-function validateHeardAbout() {
-    var FamilyMemberFriend = $('#FamilyMemberFriend').checked
-    var Television = $('#Television').checked
-    var Radio = $('#Radio').checked
-    var Newspaper = $('#Newspaper').checked
-    var Internet = $('#Internet').checked
-    var DoctorOffice = $('#DoctorOffice').checked
-    var CenterClinic = $('#CenterClinic').checked
-    var Hospital = $('#Hospital').checked
-    var Religious = $('#Religious').checked
-    var Work = $('#Work').checked
-    var Other = $('#Other').checked
+function validateEmrgncy() {
+    var emr = $('input[name = Emrgncy]:checked').val();
+    //alert("were here");
+    if (emr == "Yes") {
+         //alert("were here outer if15");
+        var q15 = $('input[name = LastSixMnths]:checked').val();
+       
+        if (q15 == undefined) {
+             //alert("were here innerif15");
+            $('#validationMessageSixMnths').html('The SixMnths field is required.');
+            return false;
+        }
+        else{
+            $('#validationMessageSixMnths').html('');
+            return true;
+             //alert("were here innerelse15");
+        }
 
-     var valid = FamilyMemberFriend || Television || Radio || Newspaper || Internet || DoctorOffice || CenterClinic|| Hospital || Religious || Work || Other;
+    }
+    else{
+        // alert("were here outterelse15");
+        return true;
+    }
+    
+}
+function validateEmrgncy2() {
+    var emr = $('input[name = Emrgncy]:checked').val();
+   
+    if (emr == "Yes") {
+         //alert("were here outer if16");
+        
+        var q16 = $('input[name = GoToOffice]:checked').val();
+       
+         if (q16 == undefined) {
+            $('#validationMessagelastVisit').html('The lastVisit field is required.');
+              //alert("were here innerif16");
+            return false;
+        }
+        else{
+            $('#validationMessagelastVisit').html('');
+            // alert("were here innerelse16");
+            return true;
+        }
+
+    }
+    else{
+        // alert("were here outterelse16");
+        return true;
+    }
+    
+}
+
+function validateOtherReasons() {
+    var NoReason = $('#NoReason')[0].checked
+    var DentalEmer = $('#DentalEmer')[0].checked
+    var CantAfford = $('#CantAfford')[0].checked
+    var DontWantToSpend = $('#DontWantToSpend')[0].checked
+    var NoDental = $('#NoDental')[0].checked
+    var NoApp = $('#NoApp')[0].checked
+    var NoTimeOff = $('#NoTimeOff')[0].checked
+    var TooFar = $('#TooFar')[0].checked
+    var NotOpen = $('#NotOpen')[0].checked
+    var TooBusy = $('#TooBusy')[0].checked
+    var NoTransport = $('#NoTransport')[0].checked
+    var DontKnow = $('#DontKnow')[0].checked
+    var ToldToCome = $('#ToldToCome')[0].checked
+    var Other2 = $('#Other2')[0].checked
+
+     var valid = NoReason || DentalEmer || CantAfford || DontWantToSpend || NoDental || NoApp || NoTimeOff|| TooFar || NotOpen || TooBusy || NoTransport || DontKnow || ToldToCome ||Other2;
 
      if(!valid){
-         $('#validationMessageReasonForVisit').html('The HeardAbout field is required.');
+         $('#validationMessageOtherReason').html('The OtherReasons field is required.');
+    }
+     else{
+         $('#validationMessageOtherReason').html('');
     }
     return valid ;   
 }
-function validateReasonForVisit() {
-    var cleaningChecked = $('#Cleaning').checked;
-    var fillingChecked = $('#Filling').checked;
-    var extractionChecked = $('#Extraction').checked;
-    var valid = cleaningChecked || fillingChecked || extractionChecked;
+
+function dentalLocation() {
+    var DentistOffice = $('#DentistOffice')[0].checked;
+    var TallMemHos = $('#TallMemHos')[0].checked;
+    var CapRegMedCenter = $('#CapRegMedCenter')[0].checked;
+    var BondComHealth = $('#BondComHealth')[0].checked;
+    var CarePoint = $('#CarePoint')[0].checked;
+    var KearneyCenter = $('#KearneyCenter')[0].checked;
+    var LeonCounty = $('#LeonCounty')[0].checked;
+    var NeighborhoodMedCenter = $('#NeighborhoodMedCenter')[0].checked;
+    var TallComDental = $('#TallComDental')[0].checked;
+    var NoLocations = $('#NoLocations')[0].checked;
+    var valid = DentistOffice || TallMemHos || CapRegMedCenter || BondComHealth || CarePoint || KearneyCenter || LeonCounty || NeighborhoodMedCenter || TallComDental || NoLocations;
 
     if(!valid){
-         $('#validationMessageHeardAbout').html('The ReasonForVisit field is required.');
+         $('#validationMessageDentalPlaces').html('The DentalLocation field is required.');
+    }
+    else{
+         $('#validationMessageDentalPlaces').html('');
     }
     return valid ;   
 
 }
-</script>
+function smoking() {
+    var Cigarettes = $('#Cigarettes')[0].checked;
+    var Pipes = $('#Pipes')[0].checked;
+    var Cigars = $('#Cigars')[0].checked;
+    var Hookahs = $('#Hookahs')[0].checked;
+    var Ecigarettes = $('#Ecigarettes')[0].checked;
+    var ChewingTobacco = $('#ChewingTobacco')[0].checked;
+    var Snuff = $('#Snuff')[0].checked;
+    var Snus = $('#Snus')[0].checked;
+    var Dissolvables = $('#Dissolvables')[0].checked;
+    var NoSmoking = $('#NoSmoking')[0].checked;
+    var valid = Cigarettes || Pipes || Cigars || Hookahs || Ecigarettes || ChewingTobacco || Snuff || Snus || Dissolvables || NoSmoking;
 
+    if(!valid){
+         $('#validationMessageSmoking').html('The Tobacco field is required.');
+    }
+    else{
+         $('#validationMessageSmoking').html('');
+    }
+    return valid ;   
+
+}
+            
+</script>
 <h4>Dental Health</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="container">
         <form asp-action="DentalHealth">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(model => model.MouthPain)
-            <div class="form-group">
-                <label  class="control-label">1. What is the reason for your visit today?</label>
-                    <div>@Html.CheckBoxFor(model => model.Cleaning) Cleaning</div>
-                    <div>@Html.CheckBoxFor(model => model.Filling) Filling</div>
-                     <div> @Html.CheckBoxFor(model => model.Extraction) Extraction</div>
-                     <span id="validationMessageReasonForVisit" class="text-danger" />
-            </div>
-            <br />
-            <div class="form-group">
-                <label  class="control-label">2. Are you having pain anywhere in your mouth today?</label>
-                    <div>@Html.RadioButtonFor(model => model.MouthPain, "true") Yes→ go to #3</div>
-                     <div>@Html.RadioButtonFor(model => model.MouthPain, "false") No→ SKIP to #4</div>
-                        <span asp-validation-for = "MouthPain" class="text-danger"></span>
-            </div>
-            <br />
-            <div class="form-group">
-                <label  class="control-label">3. How long have you had this pain?</label>
-                    <div>@Html.RadioButtonFor(model => model.LengthOfPain, "1 month or less") 1 month or less</div>
-                     <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 month, but not more than 1 year") More than 1 month, but not more than 1 year</div>
-                       <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 6 months, but not more than 1 year") More than 6 months, but not more than 1 year</div>
-                        <div>@Html.RadioButtonFor(model => model.LengthOfPain, "More than 1 year") More than 1 year</div>
-                        <span asp-validation-for = "LengthOfPain" class="text-danger"></span>
-                    </div>
-                    <br />
-             <div class="form-group">
-                <label  class="control-label">4. In general, how would you rate your overall health?</label>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Excellent") Excellent</div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Very good") Very good </div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Good") Good</div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Fair") Fair</div>
-                    <div>@Html.RadioButtonFor(model => model.OverallHealth, "Poor") Poor</div>
-                     <span asp-validation-for = "OverallHealth" class="text-danger"></span>
-             </div> 
-             <br />
-             <div class="form-group">
-                <label  class="control-label">5. How much time did it take you to travel here today?</label>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "0-15 minutes") 0-15 minutes</div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "16-30 minutes") 16-30 minutes </div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "31-60 minutes") 31-60 minutes</div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "More than 1 hour, but not more than 2 hours") More than 1 hour, but not more than 2 hours</div>
-                    <div>@Html.RadioButtonFor(model => model.TimeToTravel, "More than 1 hour, but not more than 2 hours") More than 1 hour, but not more than 2 hours</div>
-                     <span asp-validation-for = "TimeToTravel" class="text-danger"></span>
-             </div> 
-             <br />
-             <div class="form-group">
-                <label  class="control-label">6. How did you hear about the Florida Mission of Mercy clinic? Mark all that apply.</label>
-                    <div>@Html.CheckBoxFor(model => model.FamilyMemberFriend) Family member or friend</div>
-                    <div>@Html.CheckBoxFor(model => model.Television) Television</div>
-                     <div> @Html.CheckBoxFor(model => model.Radio) Radio</div>
-                     <div>@Html.CheckBoxFor(model => model.Newspaper) Newspaper</div>
-                    <div>@Html.CheckBoxFor(model => model.Internet) Internet – Facebook, Twitter, Blog, or other website</div>
-                     <div> @Html.CheckBoxFor(model => model.DoctorOffice) Doctor’s office</div>
-                     <div>@Html.CheckBoxFor(model => model.CenterClinic) Health center/clinic</div>
-                    <div>@Html.CheckBoxFor(model => model.Hospital) Hospital</div>
-                     <div> @Html.CheckBoxFor(model => model.Religious) Church or other religious organization</div>
-                     <div>@Html.CheckBoxFor(model => model.Work) At work</div>
-                    <div>@Html.CheckBoxFor(model => model.Other) Other (describe: )</div>
-                    <span id="validationMessageHeardAbout" class="text-danger" />
-                     
-            </div>
-            <br />
-            <div class="form-group">
-                <label  class="control-label">7. Did you attend the Florida Mission of Mercy clinic in Jacksonville in July 2021?</label>
-                    <div>@Html.RadioButtonFor(model => model.AttendBefore, "true") Yes</div>
-                    <div>@Html.RadioButtonFor(model => model.AttendBefore, "false") No </div>
+            @Html.HiddenFor(model => model.LengthOfPain)
+            @Html.HiddenFor(model => model.OverallHealth)
+            @Html.HiddenFor(model => model.TimeToTravel)
+            @Html.HiddenFor(model => model.AttendBefore)
+            @Html.HiddenFor(model => model.Cleaning)
+            @Html.HiddenFor(model => model.Filling)
+            @Html.HiddenFor(model => model.Extraction)
+            @Html.HiddenFor(model => model.FamilyMemberFriend)
+            @Html.HiddenFor(model => model.Television)
+            @Html.HiddenFor(model => model.Radio)
+            @Html.HiddenFor(model => model.Newspaper)
+            @Html.HiddenFor(model => model.Internet)
+            @Html.HiddenFor(model => model.DoctorOffice)
+            @Html.HiddenFor(model => model.CenterClinic)
+            @Html.HiddenFor(model => model.Hospital)
+            @Html.HiddenFor(model => model.Religious)
+            @Html.HiddenFor(model => model.Work)
+            @Html.HiddenFor(model => model.Other)
+            @Html.HiddenFor(model => model.OtherAnswer)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               <div class="col">
+                    <div class="form-group">
+                    <label  class="control-label">8. In general, how would you rate the overall condition of your teeth and gums?</label>
+                       <div>@Html.RadioButtonFor(model => model.TeethGums, "Excellent") Excellent</div>
+                         <div>@Html.RadioButtonFor(model => model.TeethGums, "Very good") Very good</div>
+                         <div>@Html.RadioButtonFor(model => model.TeethGums, "Good") Good</div>
+                         <div>@Html.RadioButtonFor(model => model.TeethGums, "Fair") Fair</div>
+                         <div>@Html.RadioButtonFor(model => model.TeethGums, "Poor") Cannot get an appointment soon enough with a dentist</div>
                     
-                     <span asp-validation-for = "AttendBefore" class="text-danger"></span>
-             </div> 
-             <br />
-            <div class="form-group">
-                <input onclick="return submitWith();" type="submit" value="Next" class="btn btn-primary" />
-            </div>
+                     
+                         <span asp-validation-for = "TeethGums" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">9. What is the MAIN reason you came here for dental care today? Please mark only ONE response.</label>
+                       <div>@Html.RadioButtonFor(model => model.MainRsn, "This is a dental emergency") This is a dental emergency</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Cannot afford to go to a dentist") Cannot afford to go to a dentist</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Don’t have insurance for dental care") Don’t have insurance for dental care</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Don’t want to spend the money for dental care") Don’t want to spend the money for dental care</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Cannot get an appointment soon enough with a dentist") Cannot get an appointment soon enough with a dentist</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Cannot take time off work to go to a dentist") Cannot take time off work to go to a dentist</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Dental office is too far away") Dental office is too far away</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Dental office is not open at convenient times") Dental office is not open at convenient times</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Too busy to go to dental office") Too busy to go to dental office</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Don’t have transportation to get to dental office") Don’t have transportation to get to dental office</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Don’t know where to go for care") Don’t know where to go for care</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Friend/family told me to come here") Friend/family told me to come here</div>
+                         <div>@Html.RadioButtonFor(model => model.MainRsn, "Other reason") Other Reason</div>
+                     
+                         <span asp-validation-for = "MainRsn" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">10. What are OTHER reasons you came here for dental care today? Mark all that apply.</label>
+                         <div>@Html.CheckBoxFor(model => model.NoReason) No other reasons</div>
+                         <div>@Html.CheckBoxFor(model => model.DentalEmer) This is a dental emergency</div>
+                         <div>@Html.CheckBoxFor(model => model.CantAfford) Cannot afford to go to a dentist</div>
+                         <div>@Html.CheckBoxFor(model => model.NoDental) Don’t have insurance for dental care</div>
+                         <div>@Html.CheckBoxFor(model => model.DontWantToSpend) Don’t want to spend the money for dental care</div>
+                         <div>@Html.CheckBoxFor(model => model.NoApp) Cannot get an appointment soon enough with a dentist</div>
+                         <div>@Html.CheckBoxFor(model => model.NoTimeOff) Cannot take time off work to go to a dentist</div>
+                         <div>@Html.CheckBoxFor(model => model.TooFar) Dental office is too far away</div>
+                         <div>@Html.CheckBoxFor(model => model.NotOpen) Dental office is not open at convenient times</div>
+                         <div>@Html.CheckBoxFor(model => model.TooBusy) Too busy to go to dental office</div>
+                         <div>@Html.CheckBoxFor(model => model.NoTransport) Don’t have transportation to get to dental office</div>
+                         <div>@Html.CheckBoxFor(model => model.DontKnow) Don’t know where to go for care</div>
+                         <div>@Html.CheckBoxFor(model => model.ToldToCome) Friend/family told me to come here</div>
+                         <div>@Html.CheckBoxFor(model => model.Other2) Other Describe: @Html.TextBoxFor(model => model.OtherAnswer2)</div>
+                            <span id="validationMessageOtherReason" class="text-danger" />
+                            
+                </div>
+                <br />
+                <div class="form-group">
+                    <label  class="control-label">11. About how long has it been since you last visited a dentist or dental clinic for any reason? [Include all types of dentists, such as, orthodontists, oral surgeons, and all other dental specialists, as well as dental hygienists. Do not include visits to an emergency room for dental care.]</label>
+                        <div>@Html.RadioButtonFor(model => model.LastVisit, "6 months or less") 6 months or less → go to #12</div>
+                         <div>@Html.RadioButtonFor(model => model.LastVisit, "More than 6 months, but not more than 1 year ago") More than 6 months, but not more than 1 year ago → go to #12</div>
+                           <div>@Html.RadioButtonFor(model => model.LastVisit, "More than 1 year, but not more than 2 years ago") More than 1 year, but not more than 2 years ago → go to #12</div>
+                            <div>@Html.RadioButtonFor(model => model.LastVisit, "More than 2 years, but not more than 5 years ago") More than 2 years, but not more than 5 years ago → go to #12</div>
+                             <div>@Html.RadioButtonFor(model => model.LastVisit, "More than 5 years ago") More than 5 years ago → go to #12</div>
+                             <div>@Html.RadioButtonFor(model => model.LastVisit, "Never have been to a dentist") Never have been to a dentist → go to #13</div>
+                             <span asp-validation-for = "LastVisit" class="text-danger"></span>
+                        </div>
+               </div>
+                        <br />
+                <div class="col">
+                 <div class="form-group">
+                    <label  class="control-label">12. What was the main reason you last visited the dentist?</label>
+                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Went in on own for check-up, examination or cleaning") Went in on own for check-up, examination or cleaning</div>
+                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Was called in by the dentist for check- up, examination or cleaning") Was called in by the dentist for check- up, examination or cleaning </div>
+                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Something was wrong, bothering or hurting me") Something was wrong, bothering or hurting me</div>
+                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Went for treatment of a condition that dentist discovered at earlier check-up or examination") Went for treatment of a condition that dentist discovered at earlier check-up or examination</div>
+                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Other reason") Other reason</div>
+                         <span asp-validation-for = "MainRsnLstVst" class="text-danger"></span>
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">13. What kind of place do you usually go to when you need dental care?</label>
+                        <div>@Html.RadioButtonFor(model => model.UsualCare, "Dentist’s office") Dentist’s office</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualCare, "Clinic or health center") Clinic or health center </div>
+                        <div>@Html.RadioButtonFor(model => model.UsualCare, "Hospital emergency room") Hospital emergency room</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualCare, "Hospital outpatient department") Hospital outpatient department</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualCare, "Urgent care center") Urgent care center</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualCare, "There is no place I go to most often") There is no place I go to most often</div>
+                         <span asp-validation-for = "UsualCare" class="text-danger"></span>
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">14. Have you ever gone to a hospital emergency room for a dental problem?</label>
+                        <div>@Html.RadioButtonFor(model => model.Emrgncy, "Yes") Yes→ go to #15</div>
+                        <div>@Html.RadioButtonFor(model => model.Emrgncy, "No") No→ SKIP to #17 </div>
+                         <span asp-validation-for = "Emrgncy" class="text-danger"></span>
+                     
+                </div>
+             </div>
+                <br />
+             <div class="col">
+                <div class="form-group" id="question15">
+                    <label  class="control-label">15. In the last 6 months, how many times did you go to a hospital emergency room for a dental problem?</label>
+                        <div>@Html.RadioButtonFor(model => model.LastSixMnths, "None") None</div>
+                        <div>@Html.RadioButtonFor(model => model.LastSixMnths, "1 time") 1 time </div>
+                        <div>@Html.RadioButtonFor(model => model.LastSixMnths, "2 times") 2 times</div>
+                        <div>@Html.RadioButtonFor(model => model.LastSixMnths, "3 times") 3 times </div>
+                        <div>@Html.RadioButtonFor(model => model.LastSixMnths, "4 or more times") 4 or more times</div>
+                         <span id="validationMessageSixMnths" class="text-danger" />
+                 </div> 
+                 <br />
+                  <div class="form-group" id="question16">
+                    <label  class="control-label">16. Thinking about your last visit to an emergency room for a dental problem, before you left the emergency room, did someone tell you that you should go to a dentist’s office or dental clinic for additional care?</label>
+                        <div>@Html.RadioButtonFor(model => model.GoToOffice, "Yes") Yes</div>
+                        <div>@Html.RadioButtonFor(model => model.GoToOffice, "No") No </div>
+                         <span id="validationMessagelastVisit" class="text-danger" />
+                 </div> 
+                 <br />
+                  <div class="form-group">
+                    <label  class="control-label">17. In the past 12 months, have you gone to any of the following places for dental care?</label>
+                         <div>a) Dentist’s office @Html.CheckBoxFor(model => model.DentistOffice)Yes </div>
+                         <div>b) Tallahassee Memorial Hospital emergency room @Html.CheckBoxFor(model => model.TallMemHos)Yes </div>
+                         <div>c) Capital Regional Medical Center emergency room @Html.CheckBoxFor(model => model.CapRegMedCenter)Yes  </div>
+                         <div>d) Bond Community Health Centere @Html.CheckBoxFor(model => model.BondComHealth)Yes </div>
+                         <div>e) Care Point Health & Wellness @Html.CheckBoxFor(model => model.CarePoint)Yes </div>
+                         <div>f) The Kearney Center @Html.CheckBoxFor(model => model.KearneyCenter)Yes </div>
+                         <div>g) Leon County Health Department @Html.CheckBoxFor(model => model.LeonCounty)Yes </div>
+                         <div>h) Neighborhood Medical Center @Html.CheckBoxFor(model => model.NeighborhoodMedCenter)Yes </div>
+                         <div>i) Tallahassee Community College Dental Hygiene Clinic @Html.CheckBoxFor(model => model.TallComDental)Yes</div>
+                         <div>j) I have not visited any of these locations @Html.CheckBoxFor(model => model.NoLocations)Yes</div>
+                            <span id="validationMessageDentalPlaces" class="text-danger" />
+                            
+                </div>
+                <br />
+
+            </div> 
+             <div class="col">
+                 <div class="form-group">
+                    <label  class="control-label">18. How often during the last year have you had difficulty doing your usual jobs or attending school because of problems with your teeth, mouth or dentures?</label>
+                        <div>@Html.RadioButtonFor(model => model.UsualJobs, "Very often") Very often</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualJobs, "Fairly often") Fairly often </div>
+                        <div>@Html.RadioButtonFor(model => model.UsualJobs, "Occasionally") Occasionally</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualJobs, "Hardly ever") Hardly ever</div>
+                        <div>@Html.RadioButtonFor(model => model.UsualJobs, "Never") Never</div>
+                         <span asp-validation-for = "UsualJobs" class="text-danger"></span>
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">19. Do you have any kind of insurance coverage that pays for any costs for dental care?</label>
+                        <div>@Html.RadioButtonFor(model => model.Insurance, "Yes") Yes</div>
+                        <div>@Html.RadioButtonFor(model => model.Insurance, "No") No </div>
+                         <span asp-validation-for = "Insurance" class="text-danger"></span>
+                 </div> 
+                 <br />
+                 <div class="form-group">
+                    <label  class="control-label">20. During the past 5 days, including today, did you use any of the following smoking or smokeless tobacco products? Mark all that apply.</label>
+                         <div> a) Cigarettes @Html.CheckBoxFor(model => model.Cigarettes)Yes </div>
+                         <div> b) Pipes @Html.CheckBoxFor(model => model.Pipes)Yes </div>
+                         <div> c) Cigars/little cigars/cigarillos @Html.CheckBoxFor(model => model.Cigars)Yes </div>
+                         <div> d) Water pipes or Hookahs @Html.CheckBoxFor(model => model.Hookahs)Yes </div>
+                         <div> e) E-cigarettes @Html.CheckBoxFor(model => model.Ecigarettes)Yes </div>
+                         <div> f) Chewing tobacco (such as Redman, Levi Garrett, or Beechnut) @Html.CheckBoxFor(model => model.ChewingTobacco)Yes </div>
+                         <div> g) Snuff (such as Skoal, Skoal Bandits, or Copenhagen) @Html.CheckBoxFor(model => model.Snuff)Yes </div>
+                         <div> h) Snus @Html.CheckBoxFor(model => model.Snus)Yes</div>
+                         <div> i) Dissolvables (such as strips or orbs) @Html.CheckBoxFor(model => model.Dissolvables)Yes </div>
+                         <div> j) I do not smoke or consume tobacco @Html.CheckBoxFor(model => model.NoSmoking)Yes </div>
+                            <span id="validationMessageSmoking" class="text-danger" />
+                </div>
+                <div class="form-group">
+                    <input onclick="return submitWith();" type="submit" value="Next" class="btn btn-primary" />
+                </div>
+             </div>
         </form>
     </div>
 </div>
 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+

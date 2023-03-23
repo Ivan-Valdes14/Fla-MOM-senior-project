@@ -112,6 +112,7 @@ namespace FLAMOM_SeniorProject.Controllers
             {
                 Patient patient = new Patient()
                 {
+                    UniquePatientId = Patient.GenerateUniqueId(),
                     MouthPain = yourHouseholdVM.MouthPain,
                     LengthOfPain = yourHouseholdVM.LengthOfPain,
                     OverallHealth = yourHouseholdVM.OverallHealth,
@@ -725,7 +726,7 @@ namespace FLAMOM_SeniorProject.Controllers
                 }
                 _context.PatientRace.AddRange(patientRaces);
                 _context.SaveChanges();
-                return RedirectToAction(nameof(Confirmation), new ConfirmationVM { PatientID = patient.Id});
+                return RedirectToAction(nameof(Confirmation), new ConfirmationVM { PatientID = patient.UniquePatientId });
             }
             return View(yourHouseholdVM);
         }

@@ -6,39 +6,6 @@
 
 <h4>Your HouseHold</h4>
 <hr />
-<style>
-    body {
-    font-family: 'Roboto', sans-serif;
-}
-
-/* background and text colors */
-body {
-    background-color: #FFFFFF;
-    color: #000000;
-}
-
-/* headings */
-h4 {
-    color: #5ac7ce;
-}
-
-/* form elements */
-label.control-label {
-    font-weight: bold;
-    color: #1992c9;
-}
-.text-danger {
-    color: #eb5d13;
-}
-.btn-primary {
-    background-color: #1992c9;
-    border-color: #1992c9;
-}
-.btn-primary:hover {
-    background-color: #5ac7ce;
-    border-color: #5ac7ce;
-}
-</style>
 <div class="row">
     <div class="container">
         <form asp-action="YourHousehold">
@@ -125,6 +92,43 @@ label.control-label {
             @Html.HiddenFor(model => model.AmericanIndian)
             @Html.HiddenFor(model => model.Other3)
             @Html.HiddenFor(model => model.JobSituation)
+            <style>
+                /* font family */
+                body {
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                /* background and text colors */
+                body {
+                    background-color: #FFFFFF;
+                    color: #000000;
+                }
+
+                /* headings */
+                h4 {
+                    color: #5ac7ce;
+                }
+
+                /* form elements */
+                label.control-label {
+                    font-weight: bold;
+                    color: #1992c9;
+                }
+
+                .text-danger {
+                    color: #eb5d13;
+                }
+
+                .btn-primary {
+                    background-color: #1992c9;
+                    border-color: #1992c9;
+                }
+
+                    .btn-primary:hover {
+                        background-color: #5ac7ce;
+                        border-color: #5ac7ce;
+                    }
+            </style>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                <div class="col">
                 <div class="form-group">

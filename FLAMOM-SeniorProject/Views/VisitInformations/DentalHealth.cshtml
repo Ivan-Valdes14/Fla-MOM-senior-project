@@ -127,6 +127,16 @@
                    $('#question16').hide();
               }
           });
+            $('input[name = LastVisit]').change(function () {
+                if (this.value == 'Never have been to a dentist') {
+                    $('#question12').hide();
+                   
+              }
+              else {
+                    $('#question12').show();
+                   
+              }
+          });
 
           $('#Other2').change(function() {
               if (this.checked == true) {
@@ -280,39 +290,43 @@ function smoking() {
 }
             
 </script>
-<style>
-    body {
-    font-family: 'Roboto', sans-serif;
-}
+    <style>
+        /* font family */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
 
-/* background and text colors */
-body {
-    background-color: #FFFFFF;
-    color: #000000;
-}
+        /* background and text colors */
+        body {
+            background-color: #FFFFFF;
+            color: #000000;
+        }
 
-/* headings */
-h4 {
-    color: #5ac7ce;
-}
+        /* headings */
+        h4 {
+            color: #5ac7ce;
+        }
 
-/* form elements */
-label.control-label {
-    font-weight: bold;
-    color: #1992c9;
-}
-.text-danger {
-    color: #eb5d13;
-}
-.btn-primary {
-    background-color: #1992c9;
-    border-color: #1992c9;
-}
-.btn-primary:hover {
-    background-color: #5ac7ce;
-    border-color: #5ac7ce;
-}
-</style>
+        /* form elements */
+        label.control-label {
+            font-weight: bold;
+            color: #1992c9;
+        }
+
+        .text-danger {
+            color: #eb5d13;
+        }
+
+        .btn-primary {
+            background-color: #1992c9;
+            border-color: #1992c9;
+        }
+
+            .btn-primary:hover {
+                background-color: #5ac7ce;
+                border-color: #5ac7ce;
+            }
+    </style>
 <h4>Dental Health</h4>
 <hr />
 <div class="row">
@@ -404,7 +418,7 @@ label.control-label {
                </div>
                         <br />
                 <div class="col">
-                 <div class="form-group">
+                 <div class="form-group" id="question12">
                     <label  class="control-label">12. What was the main reason you last visited the dentist?</label>
                         <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Went in on own for check-up, examination or cleaning") Went in on own for check-up, examination or cleaning</div>
                         <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Was called in by the dentist for check- up, examination or cleaning") Was called in by the dentist for check- up, examination or cleaning </div>

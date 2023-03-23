@@ -3,6 +3,7 @@
     public class Patient
     {
         public int Id { get; set; }
+        public string UniquePatientId { get; set; }
         public bool MouthPain { get; set; }
 
         public string? LengthOfPain { get; set; }
@@ -48,5 +49,13 @@
         public string FoodStamp { get; set; }
         public string WicProg { get; set; }
         public string HouseIncome { get; set; }
+
+        public static string GenerateUniqueId()
+        {
+            var guid = Guid.NewGuid();
+            var bytes = guid.ToByteArray();
+            long longValue = BitConverter.ToInt64(bytes, 0);
+            return longValue.ToString("X").Substring(0, 6);
+        }
     }
 }

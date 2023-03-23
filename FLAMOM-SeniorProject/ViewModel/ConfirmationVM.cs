@@ -2,6 +2,6 @@
 {
     public class ConfirmationVM
     {
-        public int PatientID { get; set; }
+        public string PatientID { get; set; }
     }
 }

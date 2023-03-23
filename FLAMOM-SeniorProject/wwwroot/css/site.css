@@ -16,4 +16,6 @@ html {
 body {
   margin-bottom: 60px;
 }
-
+nav ul li {
+    text-align: center;
+}

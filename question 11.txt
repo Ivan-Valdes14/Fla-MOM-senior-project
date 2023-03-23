@@ -1,0 +1,29 @@
+function submitWith() {
+    var skipQ12 = skipQuestion12();
+    var vor = validateOtherReasons();
+    var dl = dentalLocation();
+    var smoke = smoking();
+    var emrg = validateEmrgncy();
+    var emrg2 = validateEmrgncy2();
+    var valid = vor && dl && smoke && emrg && emrg2 && skipQ12;
+
+    return valid;
+}
+
+function skipQuestion12() {
+    var lastVisit = $('input[name = LastVisit]:checked').val();
+
+    if (lastVisit === "Never have been to a dentist") {
+        return true;
+    } else {
+        var q12 = $('input[name = MainRsnLstVst]:checked').val();
+        
+        if (q12 === undefined) {
+            $('#validationMessageQ12').html('The Question 12 field is required.');
+            return false;
+        } else {
+            $('#validationMessageQ12').html('');
+            return true;
+        }
+    }
+}

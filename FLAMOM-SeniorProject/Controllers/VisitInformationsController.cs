@@ -21,9 +21,22 @@ namespace FLAMOM_SeniorProject.Controllers
             _context = context;
             _mapper = mapper;
         }
+        
+        private async Task<string> GenerateUniquePatientIdAsync()
+        {
+            string uniqueId;
+            bool isUniqueId;
 
-      
-       
+            do
+            {
+                uniqueId = Patient.GenerateUniqueId();
+                isUniqueId = !await _context.Patient.AnyAsync(p => p.UniquePatientId == uniqueId);
+            } while (!isUniqueId);
+
+            return uniqueId;
+        }
+
+
 
         // GET: VisitInformations/Create
         public IActionResult Create()
@@ -112,7 +125,7 @@ namespace FLAMOM_SeniorProject.Controllers
             {
                 Patient patient = new Patient()
                 {
-                    UniquePatientId = Patient.GenerateUniqueId(),
+                    UniquePatientId = await GenerateUniquePatientIdAsync(),
                     MouthPain = yourHouseholdVM.MouthPain,
                     LengthOfPain = yourHouseholdVM.LengthOfPain,
                     OverallHealth = yourHouseholdVM.OverallHealth,
@@ -139,7 +152,7 @@ namespace FLAMOM_SeniorProject.Controllers
                     HouseIncome = yourHouseholdVM.HouseIncome
                 };
                 _context.Patient.Add(patient);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 List<ReasonForVisit> reasonForVisits = new List<ReasonForVisit>();
                 if (yourHouseholdVM.Cleaning)

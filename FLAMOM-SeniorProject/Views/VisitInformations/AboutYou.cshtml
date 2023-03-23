@@ -246,8 +246,8 @@ function validateRace() {
                 <div class="form-group">
                     <label  class="control-label">23. Did you ever serve on active duty in the U.S. Armed Forces, Reserves or National Guard? Please mark ONE answer.</label>
                         <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, now on active duty") Yes, now on active duty</div>
-                         <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, on active duty in the past, but not now") More than 6 months, but not more than 1 year ago → go to #12</div>
-                           <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, only on active duty for training in the Reserves or National Guard") More than 1 year, but not more than 2 years ago → go to #12</div>
+                         <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, on active duty in the past, but not now") Yes, on active duty in the past, but not now</div>
+                           <div>@Html.RadioButtonFor(model => model.ServedInMil, "Yes, only on active duty for training in the Reserves or National Guard") Yes, only on active duty for training in the Reserves or National Guard</div>
                             <div>@Html.RadioButtonFor(model => model.ServedInMil, "No, never served in the military") No, never served in the military</div>
                              <span asp-validation-for = "ServedInMil" class="text-danger"></span>
                         </div>

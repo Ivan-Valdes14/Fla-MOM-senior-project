@@ -155,16 +155,36 @@
 }
 <script>
 
-function submitWith(){   
+function submitWith() {
+    var skipQ12 = skipQuestion12();
     var vor = validateOtherReasons();
     var dl = dentalLocation();
     var smoke = smoking();
     var emrg = validateEmrgncy();
     var emrg2 = validateEmrgncy2();
-    var valid = vor && dl && smoke && emrg && emrg2;
-
+    var valid = vor && dl && smoke && emrg && emrg2 && skipQ12;
+    //alert(valid)
     return valid;
 }
+
+function skipQuestion12() {
+    var lastVisit = $('input[name = LastVisit]:checked').val();
+
+    if (lastVisit === "Never have been to a dentist") {
+        return true;
+    } else {
+        var q12 = $('input[name = MainRsnLstVst]:checked').val();
+        
+        if (q12 === undefined) {
+            $('#validationMessageQ12').html('The Question 12 field is required.');
+            return false;
+        } else {
+            $('#validationMessageQ12').html('');
+            return true;
+        }
+    }
+}
+
 function validateEmrgncy() {
     var emr = $('input[name = Emrgncy]:checked').val();
     //alert("were here");
@@ -424,8 +444,9 @@ function smoking() {
                         <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Was called in by the dentist for check- up, examination or cleaning") Was called in by the dentist for check- up, examination or cleaning </div>
                         <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Something was wrong, bothering or hurting me") Something was wrong, bothering or hurting me</div>
                         <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Went for treatment of a condition that dentist discovered at earlier check-up or examination") Went for treatment of a condition that dentist discovered at earlier check-up or examination</div>
-                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Other reason") Other reason</div>
-                         <span asp-validation-for = "MainRsnLstVst" class="text-danger"></span>
+                        <div>@Html.RadioButtonFor(model => model.MainRsnLstVst, "Other reason") Other reason</div>                       
+                        <span id="validationMessageMainRsnLstVst" class="text-danger" />
+                        
                  </div> 
                  <br />
                  <div class="form-group">

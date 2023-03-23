@@ -20,7 +20,7 @@
         public bool Other2 { get; set; }
         public string? OtherAnswer2 { get; set; }
         public string LastVisit { get; set; }
-        public string MainRsnLstVst { get; set; }
+        public string? MainRsnLstVst { get; set; }
         public string UsualCare { get; set; }
         public string Emrgncy { get; set; }
         public string? LastSixMnths { get; set; }

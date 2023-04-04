@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FLAMOM-SeniorProject", "FLAMOM-SeniorProject\FLAMOM-SeniorProject.csproj", "{A13AC7A8-A77D-4118-9162-C4CCDE473219}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FLAMOM-SeniorProject", "FLAMOM-SeniorProject\FLAMOM-SeniorProject.csproj", "{A13AC7A8-A77D-4118-9162-C4CCDE473219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlaMomTestProject", "FlaMomTestProject\FlaMomTestProject.csproj", "{74773AC1-01CA-4A52-96E3-53B1640392F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A13AC7A8-A77D-4118-9162-C4CCDE473219}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A13AC7A8-A77D-4118-9162-C4CCDE473219}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A13AC7A8-A77D-4118-9162-C4CCDE473219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74773AC1-01CA-4A52-96E3-53B1640392F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74773AC1-01CA-4A52-96E3-53B1640392F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74773AC1-01CA-4A52-96E3-53B1640392F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74773AC1-01CA-4A52-96E3-53B1640392F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -49,7 +49,6 @@
             background-color: #1992c9;
             color: #ffffff;
             font-family: 'Roboto', sans-serif; 
-            font-weight: bold;
             text-align: center;
             text-decoration: none;
             border-radius: 4px;
@@ -66,28 +65,24 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav b-73mcxd4gl5 class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div b-73mcxd4gl5 class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img alt="FLA-MOM" src="https://volusiaflaglerdental.org/wp-content/uploads/2019/02/fla-mom.jpg"/> </a>
-                <button b-73mcxd4gl5 class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span b-73mcxd4gl5 class="navbar-toggler-icon"></span>
-                </button>
-                <div b-73mcxd4gl5 class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul b-73mcxd4gl5 class="navbar-nav flex-grow-1">
-                    </ul>
+<header>
+    <nav b-73mcxd4gl5 class="navbar navbar-expand navbar-light bg-white border-bottom box-shadow mb-3">
+        <div b-73mcxd4gl5 class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img alt="FLA-MOM" src="https://volusiaflaglerdental.org/wp-content/uploads/2019/02/fla-mom.jpg"/> </a>
+            <div b-73mcxd4gl5 class="navbar-nav-container d-flex justify-content-between">
+                <ul b-73mcxd4gl5 class="navbar-nav flex-grow-1 d-flex"> s
+                </ul>
 
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark nav-button" asp-area="" asp-controller="VisitInformations" asp-action="Create">New Patient</a>
-                        </li>
-                    </ul>
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link text-light nav-button" asp-area="" asp-controller="VisitInformations" asp-action="Create">New Patient</a>
+                    </li>
+                </ul>
 
-                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

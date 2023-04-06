@@ -489,16 +489,16 @@ function smoking() {
                  <br />
                   <div class="form-group">
                     <label  class="control-label">17. In the past 12 months, have you gone to any of the following places for dental care?</label>
-                         <div>a) Dentist’s office @Html.CheckBoxFor(model => model.DentistOffice)Yes </div>
-                         <div>b) Tallahassee Memorial Hospital emergency room @Html.CheckBoxFor(model => model.TallMemHos)Yes </div>
-                         <div>c) Capital Regional Medical Center emergency room @Html.CheckBoxFor(model => model.CapRegMedCenter)Yes  </div>
-                         <div>d) Bond Community Health Centere @Html.CheckBoxFor(model => model.BondComHealth)Yes </div>
-                         <div>e) Care Point Health & Wellness @Html.CheckBoxFor(model => model.CarePoint)Yes </div>
-                         <div>f) The Kearney Center @Html.CheckBoxFor(model => model.KearneyCenter)Yes </div>
-                         <div>g) Leon County Health Department @Html.CheckBoxFor(model => model.LeonCounty)Yes </div>
-                         <div>h) Neighborhood Medical Center @Html.CheckBoxFor(model => model.NeighborhoodMedCenter)Yes </div>
-                         <div>i) Tallahassee Community College Dental Hygiene Clinic @Html.CheckBoxFor(model => model.TallComDental)Yes</div>
-                         <div>j) I have not visited any of these locations @Html.CheckBoxFor(model => model.NoLocations)Yes</div>
+                         <div>@Html.CheckBoxFor(model => model.DentistOffice) a) Dentist’s office  </div>
+                         <div>@Html.CheckBoxFor(model => model.TallMemHos) b) Tallahassee Memorial Hospital emergency room  </div>
+                         <div>@Html.CheckBoxFor(model => model.CapRegMedCenter) c) Capital Regional Medical Center emergency room  </div>
+                         <div>@Html.CheckBoxFor(model => model.BondComHealth) d) Bond Community Health Centere </div>
+                         <div>@Html.CheckBoxFor(model => model.CarePoint) e) Care Point Health & Wellness  </div>
+                         <div>@Html.CheckBoxFor(model => model.KearneyCenter) f) The Kearney Center  </div>
+                         <div>@Html.CheckBoxFor(model => model.LeonCounty) g) Leon County Health Department  </div>
+                         <div>@Html.CheckBoxFor(model => model.NeighborhoodMedCenter) h) Neighborhood Medical Center  </div>
+                         <div>@Html.CheckBoxFor(model => model.TallComDental) i) Tallahassee Community College Dental Hygiene Clinic  </div>
+                         <div>@Html.CheckBoxFor(model => model.NoLocations) j) I have not visited any of these locations </div>
                             <span id="validationMessageDentalPlaces" class="text-danger" />
                             
                 </div>
@@ -525,16 +525,16 @@ function smoking() {
                  <br />
                  <div class="form-group">
                     <label  class="control-label">20. During the past 5 days, including today, did you use any of the following smoking or smokeless tobacco products? Mark all that apply.</label>
-                         <div> a) Cigarettes @Html.CheckBoxFor(model => model.Cigarettes)Yes </div>
-                         <div> b) Pipes @Html.CheckBoxFor(model => model.Pipes)Yes </div>
-                         <div> c) Cigars/little cigars/cigarillos @Html.CheckBoxFor(model => model.Cigars)Yes </div>
-                         <div> d) Water pipes or Hookahs @Html.CheckBoxFor(model => model.Hookahs)Yes </div>
-                         <div> e) E-cigarettes @Html.CheckBoxFor(model => model.Ecigarettes)Yes </div>
-                         <div> f) Chewing tobacco (such as Redman, Levi Garrett, or Beechnut) @Html.CheckBoxFor(model => model.ChewingTobacco)Yes </div>
-                         <div> g) Snuff (such as Skoal, Skoal Bandits, or Copenhagen) @Html.CheckBoxFor(model => model.Snuff)Yes </div>
-                         <div> h) Snus @Html.CheckBoxFor(model => model.Snus)Yes</div>
-                         <div> i) Dissolvables (such as strips or orbs) @Html.CheckBoxFor(model => model.Dissolvables)Yes </div>
-                         <div> j) I do not smoke or consume tobacco @Html.CheckBoxFor(model => model.NoSmoking)Yes </div>
+                         <div> @Html.CheckBoxFor(model => model.Cigarettes) a) Cigarettes  </div>
+                         <div> @Html.CheckBoxFor(model => model.Pipes) b) Pipes  </div>
+                         <div> @Html.CheckBoxFor(model => model.Cigars) c) Cigars/little cigars/cigarillos </div>
+                         <div> @Html.CheckBoxFor(model => model.Hookahs) d) Water pipes or Hookahs  </div>
+                         <div> @Html.CheckBoxFor(model => model.Ecigarettes) e) E-cigarettes  </div>
+                         <div> @Html.CheckBoxFor(model => model.ChewingTobacco) f) Chewing tobacco (such as Redman, Levi Garrett, or Beechnut)  </div>
+                         <div> @Html.CheckBoxFor(model => model.Snuff) g) Snuff (such as Skoal, Skoal Bandits, or Copenhagen)  </div>
+                         <div> @Html.CheckBoxFor(model => model.Snus) h) Snus </div>
+                         <div> @Html.CheckBoxFor(model => model.Dissolvables) i) Dissolvables (such as strips or orbs)  </div>
+                         <div> @Html.CheckBoxFor(model => model.NoSmoking) j) I do not smoke or consume tobacco  </div>
                             <span id="validationMessageSmoking" class="text-danger" />
                 </div>
                 <div class="form-group">
